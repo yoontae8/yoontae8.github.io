@@ -1,6 +1,6 @@
 ---
 layout: post
-title: BasicSyntax(기본 문법)
+title: 1. BasicSyntax(기본 문법)
 category: kotlin
 ---
 
