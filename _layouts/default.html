@@ -1,62 +1,56 @@
-<!DOCTYPE html>
-<html lang="en-us">
+---
+# Copyright (c) 2018 Florian Klampfer <https://qwtel.com/>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-  {% include head.html %}
+layout: base
+---
 
-  <body>
+{% assign strings = site.data.strings %}
 
-    {% include sidebar.html %}
+<article class="page" role="article">
+  <header>
+    <h1 class="page-title">{{ page.title | default:strings.home | default:"Home" }}</h1>
+    {% include components/message.html text=page.description hide=page.hide_description %}
+  </header>
 
-    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
-         content to avoid any CSS collisions with our real content. -->
-    <div class="wrap">
-      <div class="masthead">
-        <div class="container">
-          <h3 class="masthead-title">
-            <a href="{{ site.baseurl }}/" title="Home" title="{{ site.title }}">
-              <img class="masthead-logo" src="{{ site.baseurl }}{{ site.logo }}"/>
-            </a>
-            <small>{{ site.tagline }}</small>
-          </h3>
-        </div>
-      </div>
+  {{ content }}
 
-      <div class="container content">
-        {{ content }}
-      </div>
-    </div>
+  <hr class="dingbat"/>
 
-    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
-
-    <script>
-      (function(document) {
-        var toggle = document.querySelector('.sidebar-toggle');
-        var sidebar = document.querySelector('#sidebar');
-        var checkbox = document.querySelector('#sidebar-checkbox');
-
-        document.addEventListener('click', function(e) {
-          var target = e.target;
-
-          if (target === toggle) {
-            checkbox.checked = !checkbox.checked;
-            e.preventDefault();
-          } else if (checkbox.checked && !sidebar.contains(target)) {
-            /* click outside the sidebar when sidebar is open */
-            checkbox.checked = false;
-          }
-        }, false);
-      })(document);
-    </script>
-    {% if site.google_analytics_token %}
-    <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', '{{ site.google_analytics_token }}', 'auto');
-ga('send', 'pageview');
-    </script>
-    {% endif %}
-  </body>
-  {% if site.disqus_short_name %}
-  <script id="dsq-count-scr" src="//{{ site.disqus_short_name }}.disqus.com/count.js" async></script>
+  {% if site.posts.size > 0 %}
+    <h2 class="hr">{{ strings.posts | default:"Posts" }}</h2>
+    <ul class="related-posts">
+      {% for post in site.posts limit:5 %}
+        {% include components/post-list-item.html post=post %}
+      {% endfor %}
+    </ul>
   {% endif %}
-</html>
+
+  {% assign pages = site.html_pages | where:"layout","page" | where_exp:"page","page.sitemap != false" %}
+  {% if pages.size > 0 %}
+    <h2 class="hr">{{ strings.pages | default:"Pages" }}</h2>
+    <ul class="related-posts">
+      {% for page in pages limit:5 %}
+        {% if page.layout == 'page' %}
+          <li class="h4">
+            <a href="{{ page.url | relative_url }}" class="flip-title">
+              <span>{{ page.title }}</span>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</article>
