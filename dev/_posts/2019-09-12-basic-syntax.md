@@ -1,9 +1,12 @@
 ---
 layout: post
-title: 1. BasicSyntax(기본 문법)
+title: 1. BasicSyntax(기본 문법) + 시작하며
 categories: dev
 tags: kotlin
 ---
+
+Kotlin를 배우고자 마음먹고 Reference를 공부하면서 온라인 스터디 공유를 위해 정리를 시작했는데, 이걸 그냥 공부 입증에만 쓰기에는 아깝다는 생각이 들어 정리하여 블로그로 올리기로 마음먹었다.
+앞으로 조금씩 번역, 정리해서 올릴 예정이다.
 
 [**시작하기** - 기본 문법]( https://kotlinlang.org/docs/reference/basic-syntax.html)
 
