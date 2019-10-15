@@ -1,16 +1,25 @@
 ---
 layout: post
-title: 1. BasicSyntax(기본 문법) + 시작하며
+title: 시작하기 - 1. BasicSyntax(기본 문법)
 categories: dev
 tags: kotlin
 ---
 
-Kotlin를 배우고자 마음먹고 Reference를 공부하면서 온라인 스터디 공유를 위해 정리를 시작했는데, 이걸 그냥 공부 입증에만 쓰기에는 아깝다는 생각이 들어 정리하여 블로그로 올리기로 마음먹었다.
+Kotlin를 배우고자 마음먹고 Reference를 공부하면서 온라인 스터디 공유를 위해 정리를 시작했는데, 이걸 그냥 공부 입증에만 쓰기에는 아깝다는 생각이 들어 정리하여 블로그로 올리기로 마음먹었다. 다만 FM으로 번역하기보다 내 이해를 돕기 위해 하는 것이니만큼 약간의 의역 + 주관적인 내용이 조금씩 포함될 수 있다.
 앞으로 조금씩 번역, 정리해서 올릴 예정이다.
 
-[**시작하기** - 기본 문법]( https://kotlinlang.org/docs/reference/basic-syntax.html)
+---
 
-## 패키지정의 및 import
+[원문: Getting Started - Basic Syntax](htps://kotlinlang.org/docs/reference/basic-syntax.html)
+
+{% include_relative kotlin-reference-index.md %}
+
+## 목차
+{:.no_toc}
+0. this unordered seed list will be replaced by toc as unordered list
+{:toc}
+
+## 패키지 정의 및 import
 
 패키지 명세는 소스 파일의 가장 위에 와야 한다.
 ```kotlin
@@ -19,10 +28,10 @@ import kotlin.text.*
 
 // ...
 ```
-폴더 구조와 패키지가 동일할 필요는 없다. 소스 파일은 파일 시스템에서 임의적으로 배치될 수 있다.
+폴더 구조와 패키지가 동일할 필요는 없다. 소스 파일은 파일 시스템 내에서는 임의적으로 배치될 수 있다.
 
 ## 프로그램 시작점
-코틀린 앱의 시작점은 main 함수
+코틀린 앱의 시작점은 main 함수다.
 ```kotlin
 fun main() {
     println("Hello world!")
@@ -35,7 +44,7 @@ fun sum(a: Int, b: Int): Int {
     return a + b
 }
 ```
-표현식으로 나타낼 수 있다.
+표현식(expression)으로 나타낼 수도 있다.
 ```kotlin
 fun sum(a: Int, b: Int) = a + b
 ```
@@ -45,13 +54,15 @@ fun sum(a: Int, b: Int) = a + b
 val a: Int = 1
 val b = 2
 ```
-재할당 가능한 변수는 var 키워드를 사용
+한번 값을 할당하면 변경할 수 없다.
+
+재할당 가능한 변수는 var 키워드를 사용한다.
 ```kotlin
 var x = 5
 x += 1
 ```
 
-## 문자열 템플릿
+## 문자열 템플릿 사용하기
 ```kotlin
 var a = 1
 val s1 = "a is $a"
@@ -68,7 +79,7 @@ fun maxOf(a: Int, b: Int): Int {
     }
 }
 ```
-표현식으로
+표현식으로도 사용할 수 있다.
 ```kotlin
 fun maxOf(a: Int, b: Int) = if (a > b) a else b
 ```
@@ -149,7 +160,7 @@ if (x in 1..y+1) {
     println("fits in range")
 }
 ```
-범위를 벗어났는지 확인
+범위를 벗어났는지 확인하기
 ```kotlin
 val list = listOf("a", "b", "c")
 
@@ -160,7 +171,7 @@ if (list.size !in list.indices) {
     println("list size is out of valid list indices range")
 }
 ```
-범위 순회
+범위 순회하기
 ```kotlin
 for (x in 1..10 stp 2) {
     print(x)
@@ -184,7 +195,7 @@ when {
     "apple" in items -> println("apple is fine too")
 }
 ```
-람다 표현식으로 filter, map
+람다 표현식으로 filter, map 사용하기
 ```kotlin
 val fruits = listOf("banana", "avocado", "apple", "kiwifruit")
 fruits

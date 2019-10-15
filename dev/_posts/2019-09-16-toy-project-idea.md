@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 토이 프로젝트 시작
+title: 토이 프로젝트 구상
 categories: dev
 tags: project
 ---
