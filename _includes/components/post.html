@@ -47,3 +47,6 @@
     </footer>
   {% endif %}
 </article>
+{% unless include.link_title %}
+  {% include components/share-buttons.html %}
+{% endunless %}
